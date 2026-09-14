@@ -1,0 +1,101 @@
+<mxfile host="app.diagrams.net" modified="2026-09-14T00:00:00.000Z" agent="Claude" version="24.0.0" type="device">
+  <diagram id="seq-express" name="Sequence Diagram - Dat don hoa toc">
+    <mxGraphModel dx="1500" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageWidth="1140" pageHeight="720" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="Sequence Diagram - Phan he Dat Don Giao Hoa Toc (Sync + Async + Return)" style="text;html=1;fontStyle=1;fontSize=14;align=center;verticalAlign=middle;fontColor=#1F4E79;" vertex="1" parent="1">
+          <mxGeometry x="60" y="10" width="1000" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Actor lifeline -->
+        <mxCell id="actor" value="Nguoi gui" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="120" height="420" as="geometry" />
+        </mxCell>
+
+        <!-- ExpressAppUI lifeline -->
+        <mxCell id="ui" value="ExpressAppUI" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="60" width="160" height="420" as="geometry" />
+        </mxCell>
+
+        <!-- DispatchManager lifeline -->
+        <mxCell id="dm" value="DispatchManager" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="60" width="160" height="420" as="geometry" />
+        </mxCell>
+
+        <!-- SMSThread lifeline -->
+        <mxCell id="sms" value="SMSThread" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="60" width="160" height="420" as="geometry" />
+        </mxCell>
+
+        <!-- Activation: ExpressAppUI (tu luc bam dat don den luc tra ket qua cho Nguoi gui) -->
+        <mxCell id="act-ui" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="375" y="140" width="10" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Activation: DispatchManager (tu luc nhan create_express_order den luc tra Return, KHONG cho SMSThread) -->
+        <mxCell id="act-dm" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="635" y="180" width="10" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Activation: SMSThread (chay ngam, dai hon, KHONG chan DispatchManager va ExpressAppUI) -->
+        <mxCell id="act-sms" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="895" y="230" width="10" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Message 1: Actor -> ExpressAppUI (Sync) -->
+        <mxCell id="m1" value="1: Bam dat don hoa toc  &lt;&lt;Sync&gt;&gt;" style="html=1;verticalAlign=bottom;endArrow=block;fillColor=#000000;fontSize=11;fontColor=#000000;strokeColor=#000000;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="140" as="sourcePoint" />
+            <mxPoint x="375" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Message 2: ExpressAppUI -> DispatchManager (Sync) -->
+        <mxCell id="m2" value="2: create_express_order()  &lt;&lt;Sync&gt;&gt;" style="html=1;verticalAlign=bottom;endArrow=block;fillColor=#000000;fontSize=11;fontColor=#000000;strokeColor=#000000;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="385" y="180" as="sourcePoint" />
+            <mxPoint x="635" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Message 3: DispatchManager -> SMSThread (Async, mui ten ho, khong to dac) -->
+        <mxCell id="m3" value="3: Gui SMS cho nguoi nhan  &lt;&lt;Async&gt;&gt;" style="html=1;verticalAlign=bottom;endArrow=open;endFill=0;fontSize=11;fontColor=#000000;strokeColor=#000000;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="645" y="230" as="sourcePoint" />
+            <mxPoint x="895" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Message 4: DispatchManager --> ExpressAppUI (Return, dashed) -->
+        <mxCell id="m4" value="4: Khoa van don thanh cong  &lt;&lt;Return&gt;&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;fontSize=11;fontColor=#000000;strokeColor=#000000;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="635" y="280" as="sourcePoint" />
+            <mxPoint x="385" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Message 5: ExpressAppUI --> Actor (Return, dashed) -->
+        <mxCell id="m5" value="5: Hien thi ma van don  &lt;&lt;Return&gt;&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;fontSize=11;fontColor=#000000;strokeColor=#000000;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="375" y="320" as="sourcePoint" />
+            <mxPoint x="120" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Ghi chu ve SMSThread chay ngam -->
+        <mxCell id="note" value="SMSThread tiep tuc xu ly gui SMS o hau truong (~8-10s)&#10;KHONG lam cham phan hoi cho Nguoi gui (buoc 4, 5 da tra ve truoc do)" style="text;html=1;align=left;verticalAlign=top;fontSize=10;fontStyle=2;fontColor=#d79b00;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="700" y="330" width="330" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Chu thich loai mui ten -->
+        <mxCell id="legend" value="Chu thich: Sync = mui ten lien net, dau to dac | Async = mui ten lien net, dau mo (khong to) | Return = mui ten net dut, dau mo" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="60" y="500" width="900" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
